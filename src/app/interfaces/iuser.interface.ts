@@ -8,4 +8,6 @@ export interface IUser {
   pais: string;
   imagen: string;
 }
-
+export interface IResponse {
+  results: IUser[];
+}

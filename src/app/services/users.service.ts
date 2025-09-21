@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { IUser } from '../interfaces/iuser.interface';
+import { IResponse } from '../interfaces/iuser.interface';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { lastValueFrom } from 'rxjs';
 export class UsersService {
   private endPoint: string = "https://peticiones.online/api/users"
   private httpClient = inject(HttpClient)
-  getAll(): Promise<IUser[]> {
-    return lastValueFrom(this.httpClient.get<IUser[]>(this.endPoint))
+  getAll(): Promise<IResponse> {
+    return lastValueFrom(this.httpClient.get<IResponse>(this.endPoint))
   }
 }
