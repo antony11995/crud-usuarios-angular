@@ -9,9 +9,15 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  private endPoint: string = "https://peticiones.online/api/users"
-  private httpClient = inject(HttpClient)
+  private endPoint: string = "https://peticiones.online/api/users";
+  private httpClient = inject(HttpClient);
+
   getAll(): Promise<IResponse> {
-    return lastValueFrom(this.httpClient.get<IResponse>(this.endPoint))
+    return lastValueFrom(this.httpClient.get<IResponse>(this.endPoint));
+  }
+
+  getAllWithPage(page: number): Promise<IResponse> {
+    const url = `${this.endPoint}?page=${page}`;
+    return lastValueFrom(this.httpClient.get<IResponse>(url));
   }
 }

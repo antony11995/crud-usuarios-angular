@@ -10,21 +10,42 @@ import { inject } from '@angular/core';
   styleUrl: './user-list.component.css'
 })
 export class UserListComponent {
-  arrUsers: IUser[] = []
-  usersServices = inject(UsersService)
+  get pageArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+  arrUsers: IUser[] = [];
+  usersServices = inject(UsersService);
+
+  currentPage: number = 1;
+  totalPages: number = 2;
+  //Estoy mostrando 8 usuarios por página
+  usersPerPage: number = 8;
 
   async ngOnInit() {
-    //lleno el array de usuarios llamando al servicio y pidiendo todos los usuarios getAll.
     try {
-        const response: IResponse = await this.usersServices.getAll()
-        console.log(response)
-        this.arrUsers = response.results
-    }
-    catch (msg: any) {
-      alert(msg.error.error)
+      //Una respuesta por página
+      const responsePage1: IResponse = await this.usersServices.getAllWithPage(1);
+      const responsePage2: IResponse = await this.usersServices.getAllWithPage(2);
+      //Un array con el listado de todos los usuarios
+      this.arrUsers = [...responsePage1.results, ...responsePage2.results];
+      //calcula el número total de páginas necesarias para mostrar todos los usuarios en una lista paginada
+      this.totalPages = Math.ceil(this.arrUsers.length / this.usersPerPage);
+    } catch (msg: any) {
+      alert(msg.error?.error || 'Error loading users');
     }
   }
-  deleteUser(id: number) {
 
+  setPage(page: number) {
+    if (page < 1 || page > this.totalPages) return;
+    this.currentPage = page;
+  }
+
+  get paginatedUsers(): IUser[] {
+    const start = (this.currentPage - 1) * this.usersPerPage;
+    return this.arrUsers.slice(start, start + this.usersPerPage);
+  }
+
+  deleteUser(id: number) {
+    // ...existing code...
   }
 }

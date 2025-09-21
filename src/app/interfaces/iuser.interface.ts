@@ -8,4 +8,5 @@ export interface IUser {
 }
 export interface IResponse {
   results: IUser[];
+  
 }
