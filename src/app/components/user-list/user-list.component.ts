@@ -17,7 +17,7 @@ export class UserListComponent {
     //lleno el array de usuarios llamando al servicio y pidiendo todos los usuarios getAll.
     try {
         const response: IResponse = await this.usersServices.getAll()
-        //console.log(response)
+        console.log(response)
         this.arrUsers = response.results
     }
     catch (msg: any) {
