@@ -20,4 +20,8 @@ export class UsersService {
     const url = `${this.endPoint}?page=${page}`;
     return lastValueFrom(this.httpClient.get<IResponse>(url));
   }
+
+  getById(id: string): Promise<IUser> {
+    return lastValueFrom(this.httpClient.get<IUser>(`${this.endPoint}/${id}`));
+  }
 }

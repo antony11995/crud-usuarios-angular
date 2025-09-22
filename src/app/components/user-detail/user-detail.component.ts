@@ -1,11 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { UsersService } from '../../services/users.service';
+import { IUser } from '../../interfaces/iuser.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-detail',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.css'
 })
-export class UserDetailComponent {
+export class UserDetailComponent implements OnInit {
+  activatedRoute = inject(ActivatedRoute);
+  usersService = inject(UsersService);
 
+  user: IUser | undefined;
+
+  async ngOnInit(): Promise<void> {
+    try {
+      const userId = this.activatedRoute.snapshot.params['id'];
+      this.user = await this.usersService.getById(userId);
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      // You could handle the error here, e.g., show a message or redirect
+    }
+  }
 }
