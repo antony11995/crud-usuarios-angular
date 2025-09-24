@@ -3,7 +3,7 @@
     <div class="col-md-8 col-lg-6">
       <div class="card shadow-lg border-0 rounded-lg mt-5">
         <div class="card-header bg-primary text-white text-center py-4">
-          <h3 class="fw-light my-4">Registro de Usuario</h3>
+          <h3 class="fw-light my-4">Nuevo Usuario</h3>
         </div>
         <div class="card-body p-4 p-md-5">
           <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -89,17 +89,17 @@
             <div class="form-floating mb-3">
               <input
                 class="form-control"
-                id="inputPassword"
-                type="password"
-                placeholder="Cree una contraseña"
-                formControlName="password"
-                [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors }"
+                id="inputImage"
+                type="text"
+                placeholder="Ingrese la URL de la imagen"
+                formControlName="image"
+                [ngClass]="{ 'is-invalid': f['image'].touched && f['image'].errors }"
               />
-              <label for="inputPassword">Contraseña</label>
-              @if (f['password'].touched && f['password'].errors) {
+              <label for="inputImage">Imagen Usuario</label>
+              @if (f['image'].touched && f['image'].errors) {
                 <div class="invalid-feedback">
-                  @if (f['password'].errors['required']) {<div>La contraseña es obligatoria.</div>}
-                  @if (f['password'].errors['minlength']) {<div>La contraseña debe tener al menos 8 caracteres.</div>}
+                  @if (f['image'].errors['required']) {<div>La URL de la imagen es obligatoria.</div>}
+                  @if (f['image'].errors['pattern']) {<div>Ingrese una URL válida.</div>}
                 </div>
               }
             </div>

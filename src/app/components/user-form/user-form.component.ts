@@ -23,7 +23,7 @@ export class UserFormComponent implements OnInit {
       last_name: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]*$/)]],
       email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      image: ['', [Validators.required, Validators.pattern(/^(https?|ftp):\/\/[^\s\/$.?#].[^\s]*$/i)]]
     });
   }
 
