@@ -24,4 +24,7 @@ export class UsersService {
   getById(id: string): Promise<IUser> {
     return lastValueFrom(this.httpClient.get<IUser>(`${this.endPoint}/${id}`));
   }
+  createUser(user: IUser): Promise<IUser> {
+      return lastValueFrom(this.httpClient.post<IUser>(this.endPoint, user))
+    }
 }

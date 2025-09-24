@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UsersService } from '../../services/users.service';
+import { IUser } from '../../interfaces/iuser.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -12,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class UserFormComponent implements OnInit {
   userForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private usersService: UsersService, private router: Router) {}
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
@@ -28,10 +31,15 @@ export class UserFormComponent implements OnInit {
     return this.userForm.controls;
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.userForm.valid) {
-      console.log('Formulario enviado:', this.userForm.value);
-      // Here you would typically send the data to a service
+      try {
+        const newUser = await this.usersService.createUser(this.userForm.value as IUser);
+        console.log('Usuario creado:', newUser);
+        //this.router.navigate(['/users']); // Navigate to the user list after creation
+      } catch (error) {
+        console.error('Error al crear usuario:', error);
+      }
     } else {
       console.log('Formulario no válido');
       this.userForm.markAllAsTouched();
