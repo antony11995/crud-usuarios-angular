@@ -28,8 +28,8 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
-      first_name: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]*$/)]],
-      last_name: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      first_name: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]],
+      last_name: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/)]],
       email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required, Validators.minLength(5)]],
       image: ['', [Validators.required, Validators.pattern(/^(https?|ftp):\/\/[^\s\/$.?#].[^\s]*$/i)]]
