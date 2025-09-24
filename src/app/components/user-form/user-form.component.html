@@ -1,1 +1,118 @@
-<p>user-form works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header bg-primary text-white text-center py-4">
+          <h3 class="fw-light my-4">Registro de Usuario</h3>
+        </div>
+        <div class="card-body p-4 p-md-5">
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="form-floating mb-3 mb-md-0">
+                  <input
+                    class="form-control"
+                    id="inputFirstName"
+                    type="text"
+                    placeholder="Ingrese su nombre"
+                    formControlName="first_name"
+                    [ngClass]="{ 'is-invalid': f['first_name'].touched && f['first_name'].errors }"
+                  />
+                  <label for="inputFirstName">Nombre</label>
+                  @if (f['first_name'].touched && f['first_name'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['first_name'].errors['required']) {<div>El nombre es obligatorio.</div>}
+                      @if (f['first_name'].errors['minlength']) {<div>El nombre debe tener al menos 3 caracteres.</div>}
+                      @if (f['first_name'].errors['pattern']) {<div>El nombre solo puede contener letras y espacios.</div>}
+                    </div>
+                  }
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input
+                    class="form-control"
+                    id="inputLastName"
+                    type="text"
+                    placeholder="Ingrese su apellido"
+                    formControlName="last_name"
+                    [ngClass]="{ 'is-invalid': f['last_name'].touched && f['last_name'].errors }"
+                  />
+                  <label for="inputLastName">Apellido</label>
+                  @if (f['last_name'].touched && f['last_name'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['last_name'].errors['required']) {<div>El apellido es obligatorio.</div>}
+                      @if (f['last_name'].errors['minlength']) {<div>El apellido debe tener al menos 3 caracteres.</div>}
+                      @if (f['last_name'].errors['pattern']) {<div>El apellido solo puede contener letras y espacios.</div>}
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="inputEmail"
+                type="email"
+                placeholder="name@example.com"
+                formControlName="email"
+                [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors }"
+              />
+              <label for="inputEmail">Correo Electrónico</label>
+              @if (f['email'].touched && f['email'].errors) {
+                <div class="invalid-feedback">
+                  @if (f['email'].errors['required']) {<div>El correo electrónico es obligatorio.</div>}
+                  @if (f['email'].errors['email']) {<div>Ingrese un correo electrónico válido.</div>}
+                </div>
+              }
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="inputUsername"
+                type="text"
+                placeholder="Ingrese su nombre de usuario"
+                formControlName="username"
+                [ngClass]="{ 'is-invalid': f['username'].touched && f['username'].errors }"
+              />
+              <label for="inputUsername">Nombre de Usuario</label>
+              @if (f['username'].touched && f['username'].errors) {
+                <div class="invalid-feedback">
+                  @if (f['username'].errors['required']) {<div>El nombre de usuario es obligatorio.</div>}
+                  @if (f['username'].errors['minlength']) {<div>El nombre de usuario debe tener al menos 5 caracteres.</div>}
+                </div>
+              }
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="inputPassword"
+                type="password"
+                placeholder="Cree una contraseña"
+                formControlName="password"
+                [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors }"
+              />
+              <label for="inputPassword">Contraseña</label>
+              @if (f['password'].touched && f['password'].errors) {
+                <div class="invalid-feedback">
+                  @if (f['password'].errors['required']) {<div>La contraseña es obligatoria.</div>}
+                  @if (f['password'].errors['minlength']) {<div>La contraseña debe tener al menos 8 caracteres.</div>}
+                </div>
+              }
+            </div>
+
+            <div class="d-grid mt-4 mb-0">
+              <button class="btn btn-primary btn-block" type="submit" [disabled]="userForm.invalid">
+                Registrar Usuario
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
