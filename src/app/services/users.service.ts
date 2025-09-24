@@ -27,4 +27,8 @@ export class UsersService {
   createUser(user: IUser): Promise<IUser> {
       return lastValueFrom(this.httpClient.post<IUser>(this.endPoint, user))
     }
+
+  updateUser(id: string, user: IUser): Promise<IUser> {
+    return lastValueFrom(this.httpClient.put<IUser>(`${this.endPoint}/${id}`, user));
+  }
 }

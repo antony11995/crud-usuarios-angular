@@ -3,7 +3,7 @@
     <div class="col-md-8 col-lg-6">
       <div class="card shadow-lg border-0 rounded-lg mt-5">
         <div class="card-header bg-primary text-white text-center py-4">
-          <h3 class="fw-light my-4">Nuevo Usuario</h3>
+          <h3 class="fw-light my-4">{{ title }}</h3>
         </div>
         <div class="card-body p-4 p-md-5">
           <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -106,7 +106,7 @@
 
             <div class="d-grid mt-4 mb-0">
               <button class="btn btn-primary btn-block" type="submit" [disabled]="userForm.invalid">
-                Guardar
+                {{ buttonText }}
               </button>
             </div>
           </form>
