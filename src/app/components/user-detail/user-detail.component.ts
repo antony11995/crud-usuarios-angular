@@ -28,10 +28,10 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
-  async deleteUser(id: string): Promise<void> {
+  async eventDeleteUser(id: string): Promise<void> {
     if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
       try {
-        const response = await this.usersService.delete(id);
+        const response = await this.usersService.deleteUser(id);
         console.log(response);
         alert('Usuario eliminado correctamente');
         this.router.navigate(['/home']);

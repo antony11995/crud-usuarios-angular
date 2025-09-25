@@ -45,10 +45,10 @@ export class UserListComponent {
     return this.arrUsers.slice(start, start + this.usersPerPage);
   }
 
-  async deleteUser(id: string): Promise<void> {
+  async eventDeleteUser(id: string): Promise<void> {
     if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
       try {
-        const response = await this.usersServices.delete(id);
+        const response = await this.usersServices.deleteUser(id);
         console.log(response);
         this.arrUsers = this.arrUsers.filter(user => user._id !== id);
         this.totalPages = Math.ceil(this.arrUsers.length / this.usersPerPage);
