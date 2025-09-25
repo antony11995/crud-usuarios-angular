@@ -31,4 +31,8 @@ export class UsersService {
   updateUser(id: string, user: IUser): Promise<IUser> {
     return lastValueFrom(this.httpClient.put<IUser>(`${this.endPoint}/${id}`, user));
   }
+
+  delete(id: string): Promise<IUser> {
+    return lastValueFrom(this.httpClient.delete<IUser>(`${this.endPoint}/${id}`));
+  }
 }
