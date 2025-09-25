@@ -35,4 +35,18 @@ export class UsersService {
   deleteUser(id: string): Promise<IUser> {
     return lastValueFrom(this.httpClient.delete<IUser>(`${this.endPoint}/${id}`));
   }
+
+  async deleteUserWithConfirmation(id: string, successCallback: () => void): Promise<void> {
+    if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+      try {
+        const response = await this.deleteUser(id);
+        console.log('User deleted:', response);
+        alert('Usuario eliminado correctamente');
+        successCallback();
+      } catch (error) {
+        console.error('Error deleting user:', error);
+        alert('Ha ocurrido un error al eliminar el usuario');
+      }
+    }
+  }
 }

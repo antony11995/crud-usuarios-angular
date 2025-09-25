@@ -46,20 +46,12 @@ export class UserListComponent {
   }
 
   async eventDeleteUser(id: string): Promise<void> {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-      try {
-        const response = await this.usersServices.deleteUser(id);
-        console.log(response);
-        this.arrUsers = this.arrUsers.filter(user => user._id !== id);
-        this.totalPages = Math.ceil(this.arrUsers.length / this.usersPerPage);
-        if (this.currentPage > this.totalPages) {
-          this.currentPage = this.totalPages;
-        }
-        alert('Usuario eliminado correctamente');
-      } catch (error) {
-        console.error('Error deleting user:', error);
-        alert('Ha ocurrido un error al eliminar el usuario');
+    await this.usersServices.deleteUserWithConfirmation(id, () => {
+      this.arrUsers = this.arrUsers.filter(user => user._id !== id);
+      this.totalPages = Math.ceil(this.arrUsers.length / this.usersPerPage);
+      if (this.currentPage > this.totalPages) {
+        this.currentPage = this.totalPages;
       }
-    }
+    });
   }
 }

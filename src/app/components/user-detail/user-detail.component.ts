@@ -29,16 +29,8 @@ export class UserDetailComponent implements OnInit {
   }
 
   async eventDeleteUser(id: string): Promise<void> {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-      try {
-        const response = await this.usersService.deleteUser(id);
-        console.log(response);
-        alert('Usuario eliminado correctamente');
-        this.router.navigate(['/home']);
-      } catch (error) {
-        console.error('Error deleting user:', error);
-        alert('Ha ocurrido un error al eliminar el usuario');
-      }
-    }
+    await this.usersService.deleteUserWithConfirmation(id, () => {
+      this.router.navigate(['/home']);
+    });
   }
 }
