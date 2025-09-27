@@ -4,6 +4,8 @@ import { inject } from '@angular/core';
 import { IUser } from '../interfaces/iuser.interface';
 import { IResponse } from '../interfaces/iuser.interface';
 import { lastValueFrom } from 'rxjs';
+import swal from 'sweetalert';
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,16 +39,24 @@ export class UsersService {
   }
 
   async deleteUserWithConfirmation(id: string, successCallback: () => void): Promise<void> {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-      try {
-        const response = await this.deleteUser(id);
-        console.log('User deleted:', response);
-        alert('Usuario eliminado correctamente');
-        successCallback();
-      } catch (error) {
-        console.error('Error deleting user:', error);
-        alert('Ha ocurrido un error al eliminar el usuario');
+      const willDelete = await swal({
+        title: "¿Estás seguro?",
+        text: "Una vez eliminado, no podrás recuperar este usuario.",
+        icon: "warning",
+        buttons: ["Cancelar", "Eliminar"],
+        dangerMode: true,
+      });
+
+      if (willDelete) {
+        try {
+          const response = await this.deleteUser(id);
+          console.log('User deleted:', response);
+          await swal("¡Usuario eliminado!", "El usuario ha sido eliminado correctamente.", "success");
+          successCallback();
+        } catch (error) {
+          console.error('Error deleting user:', error);
+          await swal("¡Error!", "Ha ocurrido un error al eliminar el usuario.", "error");
+        }
       }
-    }
   }
 }
