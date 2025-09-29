@@ -23,8 +23,7 @@ export class UserDetailComponent implements OnInit {
       const userId = this.activatedRoute.snapshot.params['id'];
       this.user = await this.usersService.getById(userId);
     } catch (error) {
-      console.error('Error fetching user:', error);
-      // You could handle the error here, e.g., show a message or redirect
+      console.error('Error obteniendo lista de usuarios:', error);
     }
   }
 

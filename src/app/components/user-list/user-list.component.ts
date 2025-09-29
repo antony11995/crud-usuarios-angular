@@ -31,7 +31,7 @@ export class UserListComponent {
       //calcula el número total de páginas necesarias para mostrar todos los usuarios en una lista paginada
       this.totalPages = Math.ceil(this.arrUsers.length / this.usersPerPage);
     } catch (msg: any) {
-      alert(msg.error?.error || 'Error loading users');
+      alert(msg.error?.error || 'Error cargando usuarios');
     }
   }
 

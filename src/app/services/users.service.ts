@@ -50,11 +50,11 @@ export class UsersService {
       if (willDelete) {
         try {
           const response = await this.deleteUser(id);
-          console.log('User deleted:', response);
+          console.log('Usuario Eliminado:', response);
           await swal("¡Usuario eliminado!", "El usuario ha sido eliminado correctamente.", "success");
           successCallback();
         } catch (error) {
-          console.error('Error deleting user:', error);
+          console.error('Error eliminando usuario:', error);
           await swal("¡Error!", "Ha ocurrido un error al eliminar el usuario.", "error");
         }
       }
