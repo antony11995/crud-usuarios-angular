@@ -63,10 +63,15 @@ export class UserFormComponent implements OnInit {
           } else {
             swal('Error', 'Información no actualizada', 'error');
           }
-        } else {
+        } else {          
           const newUser = await this.usersService.createUser(this.userForm.value as IUser);
+          if (newUser){
+          swal('¡Creado!', 'Se ha creado el usuario', 'success');
           console.log('Usuario creado:', newUser);
-          this.router.navigate(['/users']);
+          this.router.navigate(['/home']);
+          }else{
+            swal('Error', 'No se ha podido crear el usuario', 'error');
+          }
         }
       } catch (error) {
         console.error('Error al guardar usuario:', error);
