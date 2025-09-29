@@ -25,6 +25,13 @@ body {
   box-shadow: 0 1px 6px rgba(0,0,0,0.06);
 }
 
+.user-avatar {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
 .card-title {
   font-weight: 700;
   color: #212529;
@@ -47,6 +54,10 @@ body {
   border-top: none;
   border-radius: 0 0 1.25rem 1.25rem;
   box-shadow: 0 -1px 6px rgba(0,0,0,0.04);
+}
+
+.card-footer-actions {
+  gap: 0.5rem;
 }
 
 .card-footer .btn {

@@ -4,23 +4,23 @@
       <article class="col">
         <div class="card h-100 shadow-lg rounded-4 border-0">
           <div class="d-flex justify-content-center mt-4">
-            <img [src]="user.image" class="rounded-circle border border-3 border-primary" alt="Avatar" style="width: 90px; height: 90px; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" />
+            <img [src]="user.image" class="rounded-circle border border-3 border-primary user-avatar" alt="Avatar" />
           </div>
           <div class="card-body text-center">
             <h5 class="card-title fw-bold mb-1">{{ user.first_name }} {{ user.last_name }}</h5>            
           </div>
-          <div class="card-footer d-flex justify-content-center bg-white border-0 px-2 pb-3" style="gap: 0.5rem;">
+          <div class="card-footer d-flex justify-content-center bg-white border-0 px-2 pb-3 card-footer-actions">
             <a [routerLink]="['/user', user._id]" class="btn btn-light btn-sm px-2 shadow-sm d-flex flex-column align-items-center">
-              <i class="bi bi-search" style="font-size: 1.5rem;"></i>
-              <span style="font-size: 0.85rem;">Ver detalle</span>
+              <i class="bi bi-search icon-lg"></i>
+              <span class="text-sm">Ver detalle</span>
             </a>
             <a [routerLink]="['/updateuser', user._id]" class="btn btn-light btn-sm px-2 shadow-sm d-flex flex-column align-items-center">
-              <i class="bi bi-arrow-repeat" style="font-size: 1.5rem;"></i>
-              <span style="font-size: 0.85rem;">Actualizar</span>
+              <i class="bi bi-arrow-repeat icon-lg"></i>
+              <span class="text-sm">Actualizar</span>
             </a>
             <button (click)="eventDeleteUser(user._id)" class="btn btn-light btn-sm px-2 shadow-sm d-flex flex-column align-items-center">
-              <i class="bi bi-trash" style="font-size: 1.5rem;"></i>
-              <span style="font-size: 0.85rem;">Borrar</span>
+              <i class="bi bi-trash icon-lg"></i>
+              <span class="text-sm">Borrar</span>
             </button>
           </div>
         </div>
