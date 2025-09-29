@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UsersService } from '../../services/users.service';
 import { IUser } from '../../interfaces/iuser.interface';
 import { Router, ActivatedRoute } from '@angular/router';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-user-form',
@@ -56,14 +57,20 @@ export class UserFormComponent implements OnInit {
       try {
         if (this.isEdit) {
           const updatedUser = await this.usersService.updateUser(this.userId, this.userForm.value as IUser);
-          console.log('Usuario actualizado:', updatedUser);
+          if (updatedUser) {
+            swal('¡Actualizado!', 'La información del usuario ha sido actualizada', 'success');
+            this.router.navigate(['/users']);
+          } else {
+            swal('Error', 'Información no actualizada', 'error');
+          }
         } else {
           const newUser = await this.usersService.createUser(this.userForm.value as IUser);
           console.log('Usuario creado:', newUser);
+          this.router.navigate(['/users']);
         }
-        this.router.navigate(['/users']);
       } catch (error) {
         console.error('Error al guardar usuario:', error);
+        swal('Error', 'Información no actualizada', 'error');
       }
     } else {
       console.log('Formulario no válido');
