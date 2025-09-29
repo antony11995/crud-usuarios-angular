@@ -1,7 +1,7 @@
-<div class="container py-4">
+<main class="container py-4">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     @for(user of paginatedUsers; track user._id){
-      <div class="col">
+      <article class="col">
         <div class="card h-100 shadow-lg rounded-4 border-0">
           <div class="d-flex justify-content-center mt-4">
             <img [src]="user.image" class="rounded-circle border border-3 border-primary" alt="Avatar" style="width: 90px; height: 90px; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" />
@@ -24,12 +24,12 @@
             </button>
           </div>
         </div>
-      </div>
+      </article>
     }
   </div>
 
   <!-- Dynamic Pagination -->
-  <div class="d-flex justify-content-center align-items-center mt-5">
+  <nav class="d-flex justify-content-center align-items-center mt-5">
     <div style="display: flex; align-items: center; gap: 2rem;">
       @for(page of pageArray; track page){
         <button class="page-link rounded-circle border border-2 mx-2" [class.active]="currentPage === page" (click)="setPage(page)" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; background: #fff;">{{ page }}</button>
@@ -38,6 +38,5 @@
         }
       }
     </div>
-  </div>
-</div>
-
+  </nav>
+</main>

@@ -1,9 +1,7 @@
-<!-- This can be placed in your Angular component's template, e.g., user-detail.component.html -->
-<!-- The outer div provides a background and centers the card on the page. -->
-<div class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center p-4 font-sans">
+<main class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center p-4 font-sans">
   <!-- The main profile card -->
   @if (user) {
-    <div class="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+    <article class="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
       <div class="flex flex-col md:flex-row items-center md:space-x-8">
         
         <!-- Left side: Image -->
@@ -20,7 +18,7 @@
           <h1 class="text-3xl font-bold text-gray-900 dark:text-white text-center md:text-left">{{ user.first_name }} {{ user.last_name }}</h1>
     
           <!-- Sección de Detalles del Usuario -->
-          <div class="w-full text-left space-y-6 mt-8">
+          <section class="w-full text-left space-y-6 mt-8">
             <!-- Username -->
             <div>
               <label class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Nombre usuario</label>
@@ -44,10 +42,10 @@
               <label class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Email</label>
               <p class="text-base font-medium text-gray-800 dark:text-white">{{ user.email }}</p>
             </div>
-          </div>
+          </section>
     
           <!-- Botones de Acción -->
-          <div class="mt-10 w-full flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+          <section class="mt-10 w-full flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
             <button (click)="eventDeleteUser(user._id)" class="flex-1 border border-red-600 text-red-600 font-semibold py-2 px-4 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500">
               Eliminar
             </button>
@@ -57,10 +55,10 @@
             <button [routerLink]="['/home']" class="flex-1 border border-gray-500 text-gray-500 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500">
               Volver al listado
             </button>
-          </div>
+          </section>
         </div>
       </div>
-    </div>
+    </article>
   } @else {
     <!-- Loading state template -->
     <div class="w-full max-w-md text-center">
@@ -68,4 +66,4 @@
       <!-- You could add a spinner here for better UX -->
     </div>
   }
-</div>
+</main>
