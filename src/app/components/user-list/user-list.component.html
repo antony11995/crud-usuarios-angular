@@ -9,16 +9,16 @@
           <div class="card-body text-center">
             <h5 class="card-title fw-bold mb-1">{{ user.first_name }} {{ user.last_name }}</h5>            
           </div>
-          <div class="card-footer d-flex justify-content-between bg-white border-0 px-3 pb-3">
-            <a [routerLink]="['/user', user._id]" class="btn btn-light btn-sm px-3 shadow-sm d-flex flex-column align-items-center">
+          <div class="card-footer d-flex justify-content-center bg-white border-0 px-2 pb-3" style="gap: 0.5rem;">
+            <a [routerLink]="['/user', user._id]" class="btn btn-light btn-sm px-2 shadow-sm d-flex flex-column align-items-center">
               <i class="bi bi-search" style="font-size: 1.5rem;"></i>
               <span style="font-size: 0.85rem;">Ver detalle</span>
             </a>
-            <a [routerLink]="['/updateuser', user._id]" class="btn btn-light btn-sm px-3 shadow-sm d-flex flex-column align-items-center">
+            <a [routerLink]="['/updateuser', user._id]" class="btn btn-light btn-sm px-2 shadow-sm d-flex flex-column align-items-center">
               <i class="bi bi-arrow-repeat" style="font-size: 1.5rem;"></i>
               <span style="font-size: 0.85rem;">Actualizar</span>
             </a>
-            <button (click)="eventDeleteUser(user._id)" class="btn btn-light btn-sm px-3 shadow-sm d-flex flex-column align-items-center">
+            <button (click)="eventDeleteUser(user._id)" class="btn btn-light btn-sm px-2 shadow-sm d-flex flex-column align-items-center">
               <i class="bi bi-trash" style="font-size: 1.5rem;"></i>
               <span style="font-size: 0.85rem;">Borrar</span>
             </button>
