@@ -59,7 +59,7 @@ export class UserFormComponent implements OnInit {
           const updatedUser = await this.usersService.updateUser(this.userId, this.userForm.value as IUser);
           if (updatedUser) {
             swal('¡Actualizado!', 'La información del usuario ha sido actualizada', 'success');
-            this.router.navigate(['/users']);
+            this.router.navigate(['/user', this.userId]);
           } else {
             swal('Error', 'Información no actualizada', 'error');
           }
